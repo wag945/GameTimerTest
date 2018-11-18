@@ -82,7 +82,12 @@ public class SecondActivity extends AppCompatActivity {
                 minutes = secondsRemaining / 60;
                 seconds = (secondsRemaining % 60);
             }
-            timerText.setText(Long.toString(minutes)+":"+Long.toString(seconds));
+            if (seconds < 10) {
+                timerText.setText(Long.toString(minutes) + ":0" + Long.toString(seconds));
+            }
+            else {
+                timerText.setText(Long.toString(minutes) + ":" + Long.toString(seconds));
+            }
         }
     }
 }
