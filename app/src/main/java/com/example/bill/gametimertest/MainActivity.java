@@ -11,10 +11,13 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Button;
 
+import org.w3c.dom.Text;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     private TextView timerText;
+    private TextView activityName;
     private Button switchActivityButton;
 
     @Override
@@ -22,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         timerText = (TextView) findViewById(R.id.gameTimerText);
+        activityName = (TextView) findViewById(R.id.activityName);
+        activityName.setText(TAG);
         switchActivityButton = (Button) findViewById(R.id.switchToSecondActivityButton);
         switchActivityButton.setOnClickListener(new View.OnClickListener() {
             @Override

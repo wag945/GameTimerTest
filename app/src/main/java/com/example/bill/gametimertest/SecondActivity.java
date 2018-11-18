@@ -15,6 +15,7 @@ public class SecondActivity extends AppCompatActivity {
 
     private static final String TAG = "SecondActivity";
     private TextView timerText;
+    private TextView activityName;
     private Button switchActivityButton;
 
     @Override
@@ -22,6 +23,8 @@ public class SecondActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
         timerText = (TextView) findViewById(R.id.gameTimerTextSecond);
+        activityName = (TextView) findViewById(R.id.activityNameSecond);
+        activityName.setText(TAG);
         switchActivityButton = (Button) findViewById(R.id.switchToMainActivityButton);
         switchActivityButton.setOnClickListener(new View.OnClickListener() {
             @Override
