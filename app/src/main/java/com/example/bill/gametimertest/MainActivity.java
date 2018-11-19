@@ -1,5 +1,6 @@
 package com.example.bill.gametimertest;
 
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
@@ -10,6 +11,13 @@ import android.content.IntentFilter;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Button;
+import android.widget.Toast;
+
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.DataSnapshot;
 
 import org.w3c.dom.Text;
 
@@ -19,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView timerText;
     private TextView activityName;
     private Button switchActivityButton;
+    private DatabaseReference gamesRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +42,26 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent myIntent = new Intent(MainActivity.this, SecondActivity.class);
                 MainActivity.this.startActivity(myIntent);
+            }
+        });
+
+        gamesRef = FirebaseDatabase.getInstance().getReference();
+        gamesRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                System.out.println("There are " + dataSnapshot.getChildrenCount() + " children");
+                for (DataSnapshot gameSnapshot: dataSnapshot.getChildren()) {
+                    String gameTimer = gameSnapshot.child("gameTimer").getValue(String.class);
+                    if (gameTimer != null) {
+                        Log.d("MainActivity", "gameTimer: " + gameTimer);
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(MainActivity.this,
+                        "onCanceled error",
+                        Toast.LENGTH_LONG).show();
             }
         });
         startService(new Intent(this, BroadcastService.class));
@@ -86,14 +115,21 @@ public class MainActivity extends AppCompatActivity {
             if (secondsRemaining >= 60)
             {
                 minutes = secondsRemaining / 60;
-                seconds = (secondsRemaining % 60);
+                seconds = secondsRemaining % 60;
             }
+
+            String timerTextStr= "";
+
             if (seconds < 10) {
-                timerText.setText(Long.toString(minutes) + ":0" + Long.toString(seconds));
+                timerTextStr = Long.toString(minutes)+":0"+Long.toString(seconds);
+                timerText.setText(timerTextStr);
             }
             else {
-                timerText.setText(Long.toString(minutes) + ":" + Long.toString(seconds));
+                timerTextStr = Long.toString(minutes)+":"+Long.toString(seconds);
+                timerText.setText(timerTextStr);
             }
+
+            gamesRef.child("gameTimer").setValue(timerTextStr);
         }
     }
 }

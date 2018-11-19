@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "786196770904",
+    "firebase_url": "https://gametimertest.firebaseio.com",
+    "project_id": "gametimertest",
+    "storage_bucket": "gametimertest.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:786196770904:android:22d97c4d044181a7",
+        "android_client_info": {
+          "package_name": "com.example.bill.gametimertest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "786196770904-jnk6v35cg3nttvu3pppd7so6mpcalbi8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bill.gametimertest",
+            "certificate_hash": "af39b0d26277d31adafad43ef550957f32b5ffb0"
+          }
+        },
+        {
+          "client_id": "786196770904-6fq7o2jbg7birl40u2h5h6i5aac756jd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOOlGXCKYFk1Tp5lU4l53wPzUeMAmZ_xs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "786196770904-6fq7o2jbg7birl40u2h5h6i5aac756jd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
